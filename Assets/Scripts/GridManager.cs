@@ -8,7 +8,7 @@ public class GridManager : MonoBehaviour
     public Grid grid;
     public TileCtrl tilePrefab;
 
-    private GameManager gameManager;
+    private Gameplay gameManager;
     private int numbCellWidth;
     private int numbCellHeight;
 
@@ -25,7 +25,7 @@ public class GridManager : MonoBehaviour
         
     }
 
-    public void Init(GameManager gameManager, int numbCellWidth, int numbCellHeight)
+    public void Init(Gameplay gameManager, int numbCellWidth, int numbCellHeight)
     {
         this.gameManager = gameManager;
         this.numbCellWidth = numbCellWidth;
@@ -71,5 +71,16 @@ public class GridManager : MonoBehaviour
     {
 
         this.gameManager.OnSelect(tile);
+    }
+
+    public void Reset()
+    {
+        for (int i = 0; i < this.numbCellHeight; i++)
+        {
+            for (int j = 0; j < this.numbCellWidth; j++)
+            {
+                this.tileIndexes[i][j].Reset();
+            }
+        }
     }
 }

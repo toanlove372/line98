@@ -102,7 +102,6 @@ public class TileCtrl : MonoBehaviour
     {
         if (this.ball == null)
         {
-            Debug.LogError("Null ball");
             return;
         }
 
@@ -119,6 +118,12 @@ public class TileCtrl : MonoBehaviour
     public void HideSelectedEffect()
     {
         this.ball.transform.localScale = Vector3.one;
+    }
+
+    public void Reset()
+    {
+        DestroyBall();
+        this.HasPreviewBall = false;
     }
 
     private void OnSelected()
