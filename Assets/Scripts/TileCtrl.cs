@@ -14,6 +14,7 @@ public class TileCtrl : MonoBehaviour
     public bool HasBall { get => hasBall; set => hasBall = value; }
 
     public bool HasPreviewBall { get; set; }
+    public GridManager GridManager { get => gridManager; set => gridManager = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -68,15 +69,16 @@ public class TileCtrl : MonoBehaviour
     {
         this.ball = ball;
         this.HasBall = true;
+        this.ball.OnBallIn(this, path, onDone);
 
-        if (path != null)
-        {
-            StartCoroutine(IEBallIn(path, onDone));
-        }
-        else
-        {
-            this.ball.transform.position = this.gridManager.CellToPos(this.CellIndex);
-        }
+        //if (path != null)
+        //{
+        //    StartCoroutine(IEBallIn(path, onDone));
+        //}
+        //else
+        //{
+        //    this.ball.transform.position = this.gridManager.CellToPos(this.CellIndex);
+        //}
     }
 
     private IEnumerator IEBallIn(List<Vector2Int> path, Action onDone)
