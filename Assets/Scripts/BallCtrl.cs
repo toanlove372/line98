@@ -46,6 +46,8 @@ public class BallCtrl : MonoBehaviour
                 trail.SetParent(EffectPool.Instance.transform);
                 trail.gameObject.SetActive(false);
 
+                SoundManager.Instance.PlaySound("BallIn");
+
                 if (onDone != null)
                 {
                     onDone();

@@ -8,7 +8,11 @@ public class GameUI : MonoBehaviour
 {
     public Text scoreText;
     public Text timeText;
+    
     public Transform menuPopup;
+    public Transform endGamePopup;
+    public Text endGameScoreText;
+    public Text endGameHighScoreText;
 
     private int timeRunner;
     private Coroutine corTimer;
@@ -64,10 +68,25 @@ public class GameUI : MonoBehaviour
     public void OnSetMenuPopupVisible(bool isVisible)
     {
         this.menuPopup.gameObject.SetActive(isVisible);
+
+        SoundManager.Instance.PlaySound("ButtonClicked");
+    }
+
+    public void OnEndGame(int score, int highScore)
+    {
+        this.endGamePopup.gameObject.SetActive(true);
+        this.endGameScoreText.text = score.ToString();
+        this.endGameHighScoreText.text = string.Format("High score: {0}", highScore);
+
+        SoundManager.Instance.PlaySound("GameOver");
     }
 
     public void OnRestartClicked()
     {
+        this.endGamePopup.gameObject.SetActive(false);
+        this.scoreText.text = "0";
+        this.timeText.text = "0";
+
         OnSetMenuPopupVisible(false);
 
         if (this.onRestartClicked != null)

@@ -45,7 +45,7 @@ public class TileCtrl : MonoBehaviour
 
         this.ball = ball;
         this.ball.transform.position = this.gridManager.CellToPos(this.CellIndex);
-        this.ball.transform.localScale = new Vector3(0.25f, 0.25f);
+        this.ball.transform.localScale = new Vector3(0.4f, 0.4f);
     }
 
     public void MoveBallPreview(TileCtrl newTile)
@@ -70,26 +70,6 @@ public class TileCtrl : MonoBehaviour
         this.ball = ball;
         this.HasBall = true;
         this.ball.OnBallIn(this, path, onDone);
-
-        //if (path != null)
-        //{
-        //    StartCoroutine(IEBallIn(path, onDone));
-        //}
-        //else
-        //{
-        //    this.ball.transform.position = this.gridManager.CellToPos(this.CellIndex);
-        //}
-    }
-
-    private IEnumerator IEBallIn(List<Vector2Int> path, Action onDone)
-    {
-        foreach (var point in path)
-        {
-            this.ball.transform.position = this.gridManager.CellToPos(new Vector3Int(point.x, point.y, 0));
-            yield return new WaitForSeconds(0.15f);
-        }
-
-        onDone();
     }
 
     public BallCtrl OnBallOut()
@@ -113,11 +93,15 @@ public class TileCtrl : MonoBehaviour
 
         GameObject explosion = Instantiate<GameObject>(EffectPool.Instance.ballExplosion);
         explosion.transform.position = this.transform.position;
+
+        SoundManager.Instance.PlaySound("BallExplode");
     }
 
     public void ShowSelectedEffect()
     {
         this.ball.transform.localScale = new Vector3(0.75f, 0.75f);
+
+        SoundManager.Instance.PlaySound("ButtonClicked");
     }
 
     public void HideSelectedEffect()

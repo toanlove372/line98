@@ -52,6 +52,7 @@ public class Gameplay : MonoBehaviour
     public int[][] DataIndexes { get => dataIndexes;}
 
     public System.Action onScore;
+    public System.Action onEndGame;
 
     // Start is called before the first frame update
     void Start()
@@ -173,8 +174,11 @@ public class Gameplay : MonoBehaviour
 
     private void EndGame()
     {
-        Debug.LogError("End game");
         this.selectState = SelectionState.UnSelectable;
+        if (this.onEndGame != null)
+        {
+            this.onEndGame();
+        }
     }
 
     public void Restart()

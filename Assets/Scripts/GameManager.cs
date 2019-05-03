@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public int score;
 
+    private int highScore;
+
     private const int ScoreUnit = 10;
 
     // Start is called before the first frame update
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     {
         Init();
         this.gameplay.onScore += OnScore;
+        this.gameplay.onEndGame += OnEndGame;
         this.gameUI.onRestartClicked += Restart;
     }
 
@@ -27,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
+        this.highScore = PlayerPrefs.GetInt("HighScore", 0);
+
         this.gameplay.Init();
         this.gameUI.RunTimer();
     }
@@ -37,8 +42,23 @@ public class GameManager : MonoBehaviour
         this.gameUI.ShowScore(this.score);
     }
 
+    private void OnEndGame()
+    {
+        this.gameUI.StopTimer();
+
+        if (this.score > this.highScore)
+        {
+            this.highScore = this.score;
+            PlayerPrefs.SetInt("HighScore", this.highScore);
+        }
+
+        this.gameUI.OnEndGame(this.score, this.highScore);
+    }
+
     private void Restart()
     {
+        this.score = 0;
+        this.gameUI.RunTimer();
         this.gameplay.Restart();
     }
 }
