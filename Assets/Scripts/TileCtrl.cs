@@ -110,6 +110,9 @@ public class TileCtrl : MonoBehaviour
         Destroy(this.ball.gameObject);
         this.ball = null;
         this.HasBall = false;
+
+        GameObject explosion = Instantiate<GameObject>(EffectPool.Instance.ballExplosion);
+        explosion.transform.position = this.transform.position;
     }
 
     public void ShowSelectedEffect()

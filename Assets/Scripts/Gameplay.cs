@@ -12,7 +12,9 @@ public enum BallColor
     Blank,
     Red,
     Green,
-    Blue
+    Blue,
+    Yellow,
+    Magenta
 }
 
 public enum SelectionState
@@ -45,6 +47,7 @@ public class Gameplay : MonoBehaviour
     private AStar aStar;
 
     private const int MinPointToMatch = 3;
+    private const int ColorCount = 6;
 
     public int[][] DataIndexes { get => dataIndexes;}
 
@@ -97,16 +100,16 @@ public class Gameplay : MonoBehaviour
         this.previewBallIndexes = this.blankTiles.GetRandom<int>(3);
         this.previewBallColors = new int[3]
         {
-            UnityEngine.Random.Range(1, 4),
-            UnityEngine.Random.Range(1, 4),
-            UnityEngine.Random.Range(1, 4),
+            UnityEngine.Random.Range(1, ColorCount),
+            UnityEngine.Random.Range(1, ColorCount),
+            UnityEngine.Random.Range(1, ColorCount),
         };
         this.previewBalls = new BallCtrl[3];
         for (int i = 0; i < this.previewBallIndexes.Length; i++)
         {
             int xPos = this.previewBallIndexes[i] % this.numbCellWidth;
             int yPos = this.previewBallIndexes[i] / this.numbCellHeight;
-            int colorIndex = UnityEngine.Random.Range(1, 4);
+            int colorIndex = UnityEngine.Random.Range(1, ColorCount);
             this.previewBallColors[i] = colorIndex;
 
             BallCtrl ball = Instantiate<BallCtrl>(this.ballColors[colorIndex - 1]);
@@ -150,7 +153,7 @@ public class Gameplay : MonoBehaviour
             {
                 int xPos = this.previewBallIndexes[i] % this.numbCellWidth;
                 int yPos = this.previewBallIndexes[i] / this.numbCellHeight;
-                int colorIndex = UnityEngine.Random.Range(1, 4);
+                int colorIndex = UnityEngine.Random.Range(1, ColorCount);
                 this.previewBallColors[i] = colorIndex;
 
                 BallCtrl ball = Instantiate<BallCtrl>(this.ballColors[colorIndex - 1]);
@@ -187,6 +190,7 @@ public class Gameplay : MonoBehaviour
             {
                 this.blankTiles.Add(i * this.numbCellHeight + j);
                 this.dataIndexes[i][j] = 0;
+                this.aStarGrid.SetWall(false, j, i);
             }
         }
 
@@ -503,17 +507,23 @@ public class GameManagerEditor : Editor
                 for (int j = 0; j < selected.DataIndexes[i].Length; j++)
                 {
                     int value = selected.DataIndexes[i][j];
-                    if (value == 1)
+                    switch (value)
                     {
-                        GUI.backgroundColor = Color.red;
-                    }
-                    else if (value == 2)
-                    {
-                        GUI.backgroundColor = Color.blue;
-                    }
-                    else if (value == 3)
-                    {
-                        GUI.backgroundColor = Color.green;
+                        case 1:
+                            GUI.backgroundColor = Color.red;
+                            break;
+                        case 2:
+                            GUI.backgroundColor = Color.green;
+                            break;
+                        case 3:
+                            GUI.backgroundColor = Color.blue;
+                            break;
+                        case 4:
+                            GUI.backgroundColor = Color.yellow;
+                            break;
+                        case 5:
+                            GUI.backgroundColor = Color.magenta;
+                            break;
                     }
 
                     GUILayout.Button(string.Format("{0}", value));

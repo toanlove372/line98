@@ -28,8 +28,14 @@ public class BallCtrl : MonoBehaviour
     {
         if (path != null)
         {
+            Transform trail = EffectPool.Instance.ballTrails[(int)this.color - 1].transform;
+            trail.SetParent(this.transform);
+            trail.localPosition = Vector3.zero;
+            trail.gameObject.SetActive(true);
+
             float stepDuration = moveTime / path.Count;
             this.moveSequence = DOTween.Sequence();
+            this.moveSequence.SetAutoKill(true);
             for (int i = 0; i < path.Count; i++)
             {
                 Vector3 pos = tile.GridManager.CellToPos(new Vector3Int(path[i].x, path[i].y, 0));
@@ -37,6 +43,9 @@ public class BallCtrl : MonoBehaviour
             }
             this.moveSequence.OnComplete(()=>
             {
+                trail.SetParent(EffectPool.Instance.transform);
+                trail.gameObject.SetActive(false);
+
                 if (onDone != null)
                 {
                     onDone();
