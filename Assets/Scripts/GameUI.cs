@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    public Camera mainCam;
+
     public Text scoreText;
     public Text timeText;
     
@@ -17,18 +19,71 @@ public class GameUI : MonoBehaviour
     private int timeRunner;
     private Coroutine corTimer;
 
+    private bool isLandscapeLayoutSet;
+    private bool isPortraitLayoutSet;
+
     public Action onRestartClicked;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if ((Input.deviceOrientation == DeviceOrientation.Portrait) 
+            && (Screen.orientation == ScreenOrientation.Portrait)
+            && this.isPortraitLayoutSet == false)
+        {
+            UsePortraitLayout();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Screen.width < Screen.height)
+        {
+            UsePortraitLayout();
+        }
+        else
+        {
+            UseLandscapeLeftLayout();
+        }
+
+        //if ((Input.deviceOrientation == DeviceOrientation.LandscapeLeft) && (Screen.orientation != ScreenOrientation.LandscapeLeft))
+        //{
+        //    Screen.orientation = ScreenOrientation.LandscapeLeft;
+        //    UseLandscapeLeftLayout();
+        //}
+
+        //if ((Input.deviceOrientation == DeviceOrientation.Portrait) && (Screen.orientation != ScreenOrientation.Portrait))
+        //{
+        //    Screen.orientation = ScreenOrientation.Portrait;
+        //    UsePortraitLayout();
+        //}
+    }
+
+    private void UseLandscapeLeftLayout()
+    {
+        if (this.isLandscapeLayoutSet)
+        {
+            return;
+        }
+
+        this.isLandscapeLayoutSet = true;
+        this.isPortraitLayoutSet = false;
+
+        this.mainCam.orthographicSize = 5;
+    }
+
+    private void UsePortraitLayout()
+    {
+        if (this.isPortraitLayoutSet)
+        {
+            return;
+        }
+
+        this.isPortraitLayoutSet = true;
+        this.isLandscapeLayoutSet = false;
+
+        this.mainCam.orthographicSize = 9;
     }
 
     public void ShowScore(int score)
@@ -88,6 +143,7 @@ public class GameUI : MonoBehaviour
         this.timeText.text = "0";
 
         OnSetMenuPopupVisible(false);
+        StopTimer();
 
         if (this.onRestartClicked != null)
         {

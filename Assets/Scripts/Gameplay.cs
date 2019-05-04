@@ -338,40 +338,46 @@ public class Gameplay : MonoBehaviour
 
             this.selectState = SelectionState.Selectable;
 
+            int matchedCount = 0;
             for (int i = 0; i < this.dataIndexes.Length; i++)
             {
                 for (int j = 0; j < this.numbCellWidth; j++)
                 {
-                    CheckTileMatched(i, j, 0, 1);
-                    CheckTileMatched(i, j, 1, 0);
-                    CheckTileMatched(i, j, 1, 1);
-                    CheckTileMatched(i, j, -1, 1);
+                    matchedCount += CheckTileMatched(i, j, 0, 1);
+                    matchedCount += CheckTileMatched(i, j, 1, 0);
+                    matchedCount += CheckTileMatched(i, j, 1, 1);
+                    matchedCount += CheckTileMatched(i, j, -1, 1);
                 }
             }
 
-            CreateBalls();
-
-            for (int i = 0; i < this.dataIndexes.Length; i++)
+            if (matchedCount == 0)
             {
-                for (int j = 0; j < this.numbCellWidth; j++)
+                CreateBalls();
+
+                for (int i = 0; i < this.dataIndexes.Length; i++)
                 {
-                    CheckTileMatched(i, j, 0, 1);
-                    CheckTileMatched(i, j, 1, 0);
-                    CheckTileMatched(i, j, 1, 1);
-                    CheckTileMatched(i, j, -1, 1);
+                    for (int j = 0; j < this.numbCellWidth; j++)
+                    {
+                        CheckTileMatched(i, j, 0, 1);
+                        CheckTileMatched(i, j, 1, 0);
+                        CheckTileMatched(i, j, 1, 1);
+                        CheckTileMatched(i, j, -1, 1);
+                    }
                 }
             }
+            
+            
         });
         
 
     }
 
-    private void CheckTileMatched(int y, int x, int xDirection, int yDirection)
+    private int CheckTileMatched(int y, int x, int xDirection, int yDirection)
     {
         int colorIndex = this.dataIndexes[y][x];
         if (colorIndex == 0)
         {
-            return;
+            return 0;
         }
 
         int currentMatched = 0;
@@ -415,7 +421,11 @@ public class Gameplay : MonoBehaviour
             }
 
             AddScore();
+
+            return 1;
         }
+
+        return 0;
     }
 
     private List<Vector2Int> FindNearbyAvailable(int x, int y)
@@ -488,6 +498,7 @@ public class Gameplay : MonoBehaviour
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Gameplay))]
 public class GameManagerEditor : Editor
 {
@@ -540,6 +551,7 @@ public class GameManagerEditor : Editor
         }
     }
 }
+#endif
 
 namespace Ultilities
 {
