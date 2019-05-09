@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 15
+  serializedVersion: 16
   productGUID: cf998c982b4075046a399d05beb8a08d
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -127,7 +127,6 @@ PlayerSettings:
   m_HolographicPauseOnTrackingLoss: 1
   xboxOneDisableKinectGpuReservation: 0
   xboxOneEnable7thCore: 0
-  isWsaHolographicRemotingEnabled: 0
   vrSettings:
     cardboard:
       depthFormat: 0
@@ -142,10 +141,17 @@ PlayerSettings:
     hololens:
       depthFormat: 1
       depthBufferSharingEnabled: 0
+    lumin:
+      depthFormat: 0
+      frameTiming: 2
+      enableGLCache: 0
+      glCacheMaxBlobSize: 524288
+      glCacheMaxFileSize: 8388608
     oculus:
       sharedDepthBuffer: 1
       dashSupport: 1
     enable360StereoCapture: 0
+  isWsaHolographicRemotingEnabled: 0
   protectGraphicsMemory: 0
   enableFrameTimingStats: 0
   useHDRDisplay: 0
@@ -196,6 +202,10 @@ PlayerSettings:
   iPadHighResPortraitSplashScreen: {fileID: 0}
   iPadLandscapeSplashScreen: {fileID: 0}
   iPadHighResLandscapeSplashScreen: {fileID: 0}
+  iPhone65inPortraitSplashScreen: {fileID: 0}
+  iPhone65inLandscapeSplashScreen: {fileID: 0}
+  iPhone61inPortraitSplashScreen: {fileID: 0}
+  iPhone61inLandscapeSplashScreen: {fileID: 0}
   appleTVSplashScreen: {fileID: 0}
   appleTVSplashScreen2x: {fileID: 0}
   tvOSSmallIconLayers: []
@@ -239,6 +249,7 @@ PlayerSettings:
   tvOSManualSigningProvisioningProfileType: 0
   appleEnableAutomaticSigning: 0
   iOSRequireARKit: 0
+  iOSAutomaticallyDetectAndAddCapabilities: 1
   appleEnableProMotion: 0
   clonedFromGUID: 5f34be1353de5cf4398729fda238591b
   templatePackageId: com.unity.template.2d@1.0.2
@@ -246,7 +257,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
+  AndroidKeystoreName: '{inproject}: '
   AndroidKeyaliasName: 
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
@@ -254,6 +265,7 @@ PlayerSettings:
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
+  androidUseCustomKeystore: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -367,6 +379,7 @@ PlayerSettings:
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
+  openGLRequireES32: 0
   m_TemplateCustomTags: {}
   mobileMTRendering:
     Android: 1
@@ -550,6 +563,7 @@ PlayerSettings:
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
   ps4ProGarlicHeapSize: 2560
+  playerPrefsMaxSize: 32768
   ps4Passcode: frAQBc8Wsa1xVPfvJcrgRYwTiizs2trQ
   ps4pnSessions: 1
   ps4pnPresence: 1
@@ -598,6 +612,7 @@ PlayerSettings:
   webGLCompressionFormat: 1
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
+  webGLWasmStreaming: 0
   scriptingDefineSymbols: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -607,19 +622,61 @@ PlayerSettings:
   allowUnsafeCode: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
-  apiCompatibilityLevelPerPlatform: {}
+  gcIncremental: 0
+  gcWBarrierValidation: 0
+  apiCompatibilityLevelPerPlatform:
+    Windows Store Apps: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Template_2D
-  metroPackageVersion: 
-  metroCertificatePath: 
+  metroPackageName: com.toanlove371.line98
+  metroPackageVersion: 1.0.0.0
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Template_2D
-  wsaImages: {}
-  metroTileShortName: 
+  metroCertificateSubject: toanlove371
+  metroCertificateIssuer: toanlove371
+  metroCertificateNotAfter: 00c9766eb424d601
+  metroApplicationDescription: Classic Line98 game
+  wsaImages:
+    65636: Assets/Sprites/Logos/StoreLogo.scale-100.png
+    65661: Assets/Sprites/Logos/StoreLogo.scale-125.png
+    65676: Assets/Sprites/Logos/Store70x70.png
+    65686: Assets/Sprites/Logos/StoreLogo.scale-150.png
+    65716: Assets/Sprites/Logos/Store90x90.png
+    65736: Assets/Sprites/Logos/StoreLogo.scale-200.png
+    65776: Assets/Sprites/Logos/Store120x120.png
+    65936: Assets/Sprites/Logos/StoreLogo.scale-400.png
+    131272: Assets/Sprites/Logos/SplashScreen.scale-200.png
+    2031632: Assets/Sprites/Logos/Square44x44Logo.targetsize-16.png
+    2031640: Assets/Sprites/Logos/Square44x44Logo.targetsize-24.png
+    2031648: Assets/Sprites/Logos/Square44x44Logo.targetsize-32.png
+    2031664: Assets/Sprites/Logos/Square44x44Logo.targetsize-48.png
+    2031716: Assets/Sprites/Logos/Square44x44Logo.scale-100.png
+    2031741: Assets/Sprites/Logos/Square44x44Logo.scale-125.png
+    2031766: Assets/Sprites/Logos/Square44x44Logo.scale-150.png
+    2031816: Assets/Sprites/Logos/Square44x44Logo.scale-200.png
+    2031872: Assets/Sprites/Logos/Square44x44Logo.targetsize-256.png
+    2032016: Assets/Sprites/Logos/Square44x44Logo.scale-400.png
+    2097252: Assets/Sprites/Logos/SmallTile.scale-100.png
+    2097277: Assets/Sprites/Logos/SmallTile.scale-125.png
+    2097302: Assets/Sprites/Logos/SmallTile.scale-150.png
+    2097352: Assets/Sprites/Logos/SmallTile.scale-200.png
+    2097552: Assets/Sprites/Logos/SmallTile.scale-400.png
+    2162788: Assets/Sprites/Logos/Square150x150Logo.scale-100.png
+    2162813: Assets/Sprites/Logos/Square150x150Logo.scale-125.png
+    2162838: Assets/Sprites/Logos/Square150x150Logo.scale-150.png
+    2162888: Assets/Sprites/Logos/Square150x150Logo.scale-200.png
+    2163088: Assets/Sprites/Logos/Square150x150Logo.scale-400.png
+    2228324: Assets/Sprites/Logos/LargeTile.scale-100.png
+    2228349: Assets/Sprites/Logos/LargeTile.scale-125.png
+    2228374: Assets/Sprites/Logos/LargeTile.scale-150.png
+    2228424: Assets/Sprites/Logos/LargeTile.scale-200.png
+    2228624: Assets/Sprites/Logos/LargeTile.scale-400.png
+    2293860: Assets/Sprites/Logos/Wide310x150Logo.scale-100.png
+    2293885: Assets/Sprites/Logos/Wide310x150Logo.scale-125.png
+    2293910: Assets/Sprites/Logos/Wide310x150Logo.scale-150.png
+    2293960: Assets/Sprites/Logos/Wide310x150Logo.scale-200.png
+    2294160: Assets/Sprites/Logos/Wide310x150Logo.scale-400.png
+  metroTileShortName: 'Line98: Magic Balls'
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -632,12 +689,56 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
     a: 1}
   metroSplashScreenUseBackgroundColor: 0
-  platformCapabilities: {}
-  metroTargetDeviceFamilies: {}
+  platformCapabilities:
+    WindowsStoreApps:
+      AllJoyn: False
+      Appointments: False
+      BackgroundMediaPlayback: False
+      BlockedChatMessages: False
+      Bluetooth: False
+      Chat: False
+      CodeGeneration: False
+      Contacts: False
+      EnterpriseAuthentication: False
+      HumanInterfaceDevice: False
+      InputInjectionBrokered: False
+      InternetClient: False
+      InternetClientServer: False
+      Location: False
+      LowLevelDevices: False
+      Microphone: False
+      MusicLibrary: False
+      Objects3D: False
+      OfflineMapsManagement: False
+      PhoneCall: False
+      PhoneCallHistoryPublic: False
+      PicturesLibrary: False
+      PointOfService: False
+      PrivateNetworkClientServer: False
+      Proximity: False
+      RecordedCallsFolder: False
+      RemoteSystem: False
+      RemovableStorage: False
+      SharedUserCertificates: False
+      SpatialPerception: False
+      SystemManagement: False
+      UserAccountInformation: False
+      UserDataTasks: False
+      UserNotificationListener: False
+      VideosLibrary: False
+      VoipCall: False
+      WebCam: False
+  metroTargetDeviceFamilies:
+    Desktop: True
+    Holographic: False
+    IoT: False
+    IoTHeadless: False
+    Mobile: False
+    Team: False
+    Xbox: False
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 
-  metroCompilationOverrides: 1
   XboxOneProductId: 
   XboxOneUpdateKey: 
   XboxOneSandboxId: 
@@ -662,7 +763,7 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   XboxOneXTitleMemory: 8
-  xboxOneScriptCompiler: 0
+  xboxOneScriptCompiler: 1
   XboxOneOverrideIdentityName: 
   vrEditorSettings:
     daydream:
@@ -676,7 +777,7 @@ PlayerSettings:
     m_PortalFolderPath: 
   luminCert:
     m_CertPath: 
-    m_PrivateKeyPath: 
+    m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:
     m_VersionCode: 1
